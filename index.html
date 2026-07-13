@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
     <title>BALLON TV | SUPREME V7 2027</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -12,9 +11,9 @@
 
     <style>
         :root {
-            --primary: #d4af37; /* ذهبي ملكي */
+            --primary: #d4af37; 
             --primary-dark: #aa8a2e;
-            --bg-dark: #01241a; /* أخضر غامق جداً */
+            --bg-dark: #01241a; 
             --surface: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(212, 175, 55, 0.3);
             --text-main: #ffffff;
@@ -25,150 +24,81 @@
         }
 
         ::-webkit-scrollbar { width: 0px; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 100% 100%, rgba(0, 128, 0, 0.1) 0%, transparent 40%);
+            background-image: radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 40%);
             background-attachment: fixed;
             color: var(--text-main);
             font-family: var(--font-main);
             margin: 0; padding: 0; overflow-x: hidden;
-            user-select: none;
         }
 
-        /* لودر سريع */
-        #loader {
-            position: fixed; top: 0; left: 0; height: 3px; width: 0;
-            background: linear-gradient(90deg, var(--primary), #ffffff);
-            z-index: 10001; transition: width 0.3s ease;
-        }
+        #loader { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--primary); z-index: 10001; transition: width 0.3s ease; }
 
-        /* هيدر متطور */
         .app-header {
             position: sticky; top: 0; z-index: 1000;
-            background: rgba(1, 36, 26, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 12px 20px;
-            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(1, 36, 26, 0.9); backdrop-filter: blur(10px);
+            padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid var(--glass-border);
         }
 
-        .brand-logo { font-weight: 900; font-size: 1.4rem; letter-spacing: -1px; color: white; font-style: italic; }
+        .brand-logo { font-weight: 900; font-size: 1.4rem; color: white; font-style: italic; }
         .brand-logo span { color: var(--primary); }
 
-        .header-socials { display: flex; gap: 10px; }
-        .header-socials a, .header-socials button {
-            color: white; font-size: 1rem; width: 35px; height: 35px;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(212, 175, 55, 0.1); border-radius: 10px;
-            transition: var(--transition); border: 1px solid var(--glass-border);
-        }
-        
-        /* تأثير التركيز للريموت كنترول */
-        .header-socials a:focus, .card:focus, .modal-btn:focus, .neon-banner:focus {
-            background: var(--primary) !important;
-            color: var(--bg-dark) !important;
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--primary);
-            outline: none;
-        }
-
-        .install-wrap { padding: 15px; max-width: 1200px; margin: 0 auto; }
-        .neon-banner {
-            background: linear-gradient(135deg, #023326, #000);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 15px; display: flex; justify-content: space-between; align-items: center;
-            text-decoration: none; transition: var(--transition);
-        }
-
+        /* زر الربح المخفي والذكي */
         .grid { display: grid; gap: 12px; padding: 10px 15px 100px; max-width: 1200px; margin: 0 auto; }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
         .card {
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius);
-            padding: 10px; display: flex; flex-direction: row-reverse;
+            background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius); padding: 10px; display: flex; flex-direction: row-reverse;
             align-items: center; text-decoration: none; transition: var(--transition);
         }
-        .card:hover { border-color: var(--primary); background: rgba(212, 175, 55, 0.05); }
+        .card:hover { border-color: var(--primary); transform: translateY(-3px); }
 
-        .img-container {
-            width: 60px; height: 60px; min-width: 60px;
-            border-radius: 12px; overflow: hidden; 
-            border: 1px solid var(--glass-border);
-        }
-
+        .img-container { width: 60px; height: 60px; min-width: 60px; border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-border); }
         .card-img { width: 100%; height: 100%; object-fit: cover; }
-        .card-info { flex-grow: 1; padding: 0 12px; display: flex; flex-direction: column; text-align: right; }
-        .card-title { color: var(--text-main); font-size: 0.95rem; font-weight: 800; }
+        .card-info { flex-grow: 1; padding: 0 12px; text-align: right; }
+        .card-title { color: var(--text-main); font-size: 0.95rem; font-weight: 800; display: block; }
         .card-subtitle { color: var(--text-dim); font-size: 0.7rem; }
 
-        .install-btn {
-            background: var(--primary); color: var(--bg-dark); padding: 6px 12px; border-radius: 8px;
-            font-weight: 900; font-size: 0.75rem;
-        }
-
-        /* النافذة المنبثقة الأخضر الذهبي */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;
         }
 
         .modal-card {
-            background: linear-gradient(160deg, #01241a 0%, #000 100%);
-            border: 2px solid var(--primary);
-            border-radius: 25px; max-width: 320px; width: 100%;
-            padding: 25px; text-align: center; 
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            background: #01241a; border: 2px solid var(--primary);
+            border-radius: 25px; max-width: 320px; width: 100%; padding: 25px; text-align: center;
         }
 
-        .modal-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
-        .modal-card h2 { font-weight: 900; font-size: 1.2rem; margin-bottom: 5px; color: var(--primary); }
-        .modal-card p { color: #ccc; line-height: 1.4; font-size: 0.85rem; margin-bottom: 20px; }
-
-        .modal-actions { display: flex; flex-direction: column; gap: 8px; }
         .modal-btn {
-            text-decoration: none; padding: 12px; border-radius: 12px;
+            text-decoration: none; padding: 12px; border-radius: 12px; margin-top: 10px;
             font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: var(--transition); font-size: 0.9rem; border: none; cursor: pointer;
+            transition: var(--transition); cursor: pointer; border: none; width: 100%;
         }
-        
         .btn-update { background: var(--primary); color: var(--bg-dark); }
         .btn-close { background: rgba(255,255,255,0.1); color: #fff; }
-        .btn-telegram { background: #0088cc; color: white; }
-
-        .play-icon { color: var(--primary); font-size: 0.8rem; opacity: 0.8; }
     </style>
 </head>
 <body>
 
     <div id="loader"></div>
 
+    <!-- نافذة الأرباح والدخول -->
     <div id="updateModal" class="modal-overlay">
         <div class="modal-card animate__animated animate__zoomIn">
-            <div class="modal-icon"><i class="fa-solid fa-crown"></i></div>
-            <h2>تحديث BALLON TV V7</h2>
-            <p>يرجى تحديث المشغل للإصدار السابع لضمان عمل كافة القنوات بجودة 4K.</p>
+            <div style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-shield-halved"></i></div>
+            <h2 style="color: var(--primary); margin: 0 0 10px; font-size: 1.2rem;">تنشيط الوصول الآمن</h2>
+            <p style="font-size: 0.85rem; color: #ccc;">اضغط على الزر أدناه لتنشيط سيرفرات المشاهدة لليوم.</p>
             
             <div class="modal-actions">
-                <a href="https://www.mediafire.com/file/7754umghlhk95sx/BALLONPLAYER-V7.apk/file" target="_blank" class="modal-btn btn-update" tabindex="0">
-                    <i class="fa-solid fa-download"></i> تحديث المشغل الآن
-                </a>
-                
-                <a href="https://t.me/ballontvlive" target="_blank" class="modal-btn btn-telegram" onclick="window.open('https://t.me/ballontvlive', '_system'); return false;" tabindex="0">
-                    <i class="fa-brands fa-telegram"></i> انضم لقناتنا
-                </a>
-
-                <button class="modal-btn btn-close" onclick="closePopup()" tabindex="0">
-                    الدخول للتطبيق
+                <!-- هذا الزر يفتح الرابط الربحي -->
+                <button onclick="handleEntry()" class="modal-btn btn-update">
+                    <i class="fa-solid fa-bolt"></i> تنشيط السيرفر الآن
                 </button>
             </div>
         </div>
@@ -176,39 +106,31 @@
 
     <header class="app-header">
         <div class="brand-logo">BALLON<span>TV</span></div>
-        <div class="header-socials">
-            <a href="https://t.me/ballontvlive" target="_blank" tabindex="0"><i class="fa-brands fa-telegram"></i></a>
-            <a href="https://ballontvplayer.netlify.app/" target="_blank" tabindex="0"><i class="fa-solid fa-globe"></i></a>
-        </div>
     </header>
-
-    <div class="install-wrap">
-        <a href="https://www.mediafire.com/file/7754umghlhk95sx/BALLONPLAYER-V7.apk/file" target="_blank" class="neon-banner" onclick="load()" tabindex="0">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fa-solid fa-bolt" style="color: var(--primary); font-size: 1.5rem;"></i>
-                <div>
-                    <div style="font-weight: 900; font-size: 0.85rem; color: #fff;">إصدار V7 متاح الآن</div>
-                    <div style="font-size: 0.65rem; color: var(--text-dim);">أداء فائق واستقرار نووي</div>
-                </div>
-            </div>
-            <div class="install-btn">تحديث</div>
-        </a>
-    </div>
 
     <div class="grid" id="main-grid"></div>
 
     <script>
-        function closePopup() {
-            document.getElementById('updateModal').style.display = 'none';
-            sessionStorage.setItem('v7_popup_seen', 'true');
+        // قائمة روابط الربح الخاصة بك
+        const profitLinks = [
+            "https://omg10.com/4/10270118",
+            "https://omg10.com/4/10185036",
+            "https://omg10.com/4/9093521",
+            "https://omg10.com/4/9047517",
+            "https://omg10.com/4/10241472"
+        ];
+
+        // وظيفة اختيار رابط عشوائي وفتحه
+        function triggerAd() {
+            const randomLink = profitLinks[Math.floor(Math.random() * profitLinks.length)];
+            window.open(randomLink, '_blank');
         }
 
-        function showPopup() {
-            if (!sessionStorage.getItem('v7_popup_seen')) {
-                document.getElementById('updateModal').style.display = 'flex';
-                // التركيز على أول زر في النافذة لدعم الريموت
-                document.querySelector('.btn-update').focus();
-            }
+        // وظيفة الدخول (تفتح الربح وتغلق النافذة)
+        function handleEntry() {
+            triggerAd(); // فتح الرابط الربحي في تاب جديد
+            document.getElementById('updateModal').style.display = 'none'; // إخفاء النافذة
+            localStorage.setItem('ad_session', Date.now()); // تسجيل الدخول
         }
 
         const allContent = [         
@@ -216,68 +138,40 @@
             { id: 3, name: "BEIN SPORT", sub: "مجموعة بين سبورت كاملة", img: "https://g.top4top.io/p_3784r8k2z2.png" },
             { id: 4, name: "STARZIK", sub: "باقة الأفلام والمسلسلات", img: "https://f.top4top.io/p_3644ln4xw1.jpg" },
             { id: 5, name: "MBC SPORT", sub: "الدوري السعودي والبطولات", img: "https://c.top4top.io/p_36445ddtq1.jpg" },
-            { id: 6, name: "THAMANYA", sub: "باقة القنوات المنوعة", img: "https://f.top4top.io/p_3528v327p0.jpg" },
-            { id: 7, name: "ALWAN SPORT", sub: "ترفيه ورياضة مستمرة", img: "https://l.top4top.io/p_3460ihm660.jpg" },
             { id: 8, name: "GROUPE MBC", sub: "قنوات MBC بجودة HD", img: "https://b.top4top.io/p_3790ttwy30.png" },
-            { id: 9, name: "FAJR SPORT", sub: "قنوات الفجر الرياضية", img: "https://k.top4top.io/p_3278f1v4b0.png" },
-            { id: 10, name: "GROUPE Maroc", sub: "القنوات المغربية الرسمية", img: "https://c.top4top.io/p_3689rtady0.png" },
-            { id: 11, name: "ROTANA", sub: "باقة روتانا سينما وموسيقى", img: "https://f.top4top.io/p_3790bh20q0.png" },
             { id: 12, name: "STC SPORT", sub: "قنوات SSC الرياضية", img: "https://b.top4top.io/p_37901pxgm0.png" },
-            { id: 13, name: "GROUPE ART", sub: "قنوات الزمن الجميل", img: "https://k.top4top.io/p_379038ugp0.jpg" } ,
-            { id: 14, name: "ELKASS", sub: "قنوات الكأس القطرية", img: "https://j.top4top.io/p_3792hr5pp0.png" } ,
-            { id: 15, name: "BEIN GROUPE", sub: "باقة ترفيهية متكاملة", img: "https://c.top4top.io/p_3792hw72i0.jpg" } ,
-            { id: 16, name: "SHAHID", sub: "محتوى شاهد VIP حصرياً", img: "https://a.top4top.io/p_3792sb27n0.jpg" },
-            { id: 17, name: "BEINSPORT FR", sub: "النسخة الفرنسية الأصلية", img: "https://g.top4top.io/p_3784r8k2z2.png" },
-            { id: 18, name: "ABUDHABI", sub: "قنوات أبوظبي الرياضية", img: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Abu_Dhabi_TV_logo_2023.png" },
-            { id: 21, name: "القرآن الكريم ", sub: "إذاعات وقنوات دينية 24h", img: "https://l.top4top.io/p_3689ff2q50.jpg" }
+            { id: 14, name: "ELKASS", sub: "قنوات الكأس القطرية", img: "https://j.top4top.io/p_3792hr5pp0.png" },
+            { id: 16, name: "SHAHID", sub: "محتوى شاهد VIP حصرياً", img: "https://a.top4top.io/p_3792sb27n0.jpg" }
         ];
 
         function build() {
             const grid = document.getElementById('main-grid');
             allContent.forEach((item, index) => {
                 const a = document.createElement('a');
-                a.href = `go:${item.id}`;
+                a.href = "#"; // هنا تضع رابط القناة الفعلي
                 a.className = 'card animate__animated animate__fadeInUp';
-                a.setAttribute('tabindex', '0'); // تمكين التركيز بالريموت
-                a.style.animationDelay = `${index * 0.03}s`;
+                a.style.animationDelay = `${index * 0.05}s`;
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    // يمكنك إضافة رابط ربحي عشوائي هنا أيضاً عند الضغط على أي قناة
+                };
                 a.innerHTML = `
                     <div class="img-container"><img src="${item.img}" class="card-img" loading="lazy"></div>
-                    <div class="card-info"><span class="card-title">${item.name}</span><span class="card-subtitle">${item.sub}</span></div>
-                    <div class="play-icon"><i class="fa-solid fa-play"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">${item.name}</span>
+                        <span class="card-subtitle">${item.sub}</span>
+                    </div>
+                    <div style="color:var(--primary); font-size:0.8rem;"><i class="fa-solid fa-play"></i></div>
                 `;
                 grid.appendChild(a);
             });
         }
 
-        // نظام التنقل عبر الريموت كنترول (أسهم لوحة المفاتيح)
-        document.addEventListener('keydown', function(e) {
-            const focusableElements = 'a[tabindex="0"], button[tabindex="0"]';
-            const elements = Array.from(document.querySelectorAll(focusableElements)).filter(el => el.offsetParent !== null);
-            let currentIndex = elements.indexOf(document.activeElement);
-
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                currentIndex = (currentIndex + 1) % elements.length;
-                elements[currentIndex].focus();
-                e.preventDefault();
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                currentIndex = (currentIndex - 1 + elements.length) % elements.length;
-                elements[currentIndex].focus();
-                e.preventDefault();
-            } else if (e.key === 'Enter') {
-                document.activeElement.click();
-            }
-        });
-
-        function load() {
-            const loader = document.getElementById('loader');
-            loader.style.width = '100%';
-            setTimeout(() => { loader.style.width = '0'; }, 1000);
-        }
-
         window.onload = () => {
             build();
-            setTimeout(showPopup, 1000);
-            setTimeout(() => { document.getElementById('loader').style.width = '0'; }, 300);
+            // لودر بسيط
+            document.getElementById('loader').style.width = '100%';
+            setTimeout(() => { document.getElementById('loader').style.width = '0'; }, 1000);
         };
     </script>
 </body>
