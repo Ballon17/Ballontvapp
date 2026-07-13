@@ -3,70 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>BALLON TV | HOME</title>
+    <title>BALLON TV | SUPREME HOME</title>
+
+    <!-- الخطوط والأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
-        :root { --primary: #d4af37; --bg-dark: #01241a; --surface: rgba(255, 255, 255, 0.05); --glass-border: rgba(212, 175, 55, 0.3); --text-main: #ffffff; --radius: 20px; --transition: all 0.25s ease-out; }
+        :root {
+            --primary: #d4af37; /* ذهبي ملكي */
+            --bg-dark: #01241a; /* أخضر زمردي */
+            --surface: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(212, 175, 55, 0.3);
+            --text-main: #ffffff;
+            --radius: 20px;
+            --transition: all 0.25s ease-out;
+        }
+
         ::-webkit-scrollbar { width: 0px; }
-        body { background-color: var(--bg-dark); background-image: radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 40%); color: var(--text-main); font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; overflow-x: hidden; user-select: none; }
-        .app-header { position: sticky; top: 0; z-index: 1000; background: rgba(1, 36, 26, 0.9); backdrop-filter: blur(10px); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
-        .brand-logo { font-weight: 900; font-size: 1.4rem; color: white; font-style: italic; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: 'Tajawal', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
+            user-select: none;
+        }
+
+        /* هيدر احترافي */
+        .app-header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(1, 36, 26, 0.9); backdrop-filter: blur(10px);
+            padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .brand-logo { font-weight: 900; font-size: 1.5rem; color: white; font-style: italic; }
         .brand-logo span { color: var(--primary); }
-        .grid { display: grid; gap: 12px; padding: 20px 15px 100px; max-width: 1200px; margin: 0 auto; }
+
+        /* بانر تحميل المشغل (إجباري وبارز) */
+        .download-banner {
+            background: linear-gradient(135deg, #d4af37, #aa8a2e);
+            margin: 15px; padding: 20px; border-radius: var(--radius);
+            display: flex; justify-content: space-between; align-items: center;
+            color: #000; text-decoration: none; font-weight: 900;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.02);} 100% {transform: scale(1);} }
+
+        .download-info { display: flex; align-items: center; gap: 15px; }
+        .download-info i { font-size: 2rem; }
+        .btn-dl { background: #000; color: #fff; padding: 8px 15px; border-radius: 10px; font-size: 0.8rem; }
+
+        /* حاوية الأقسام */
+        .section-title { padding: 10px 20px; font-weight: 900; color: var(--primary); font-size: 1.1rem; }
+        .grid { display: grid; gap: 12px; padding: 0 15px 100px; max-width: 1200px; margin: 0 auto; }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        .card { background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius); padding: 12px; display: flex; flex-direction: row-reverse; align-items: center; text-decoration: none; transition: var(--transition); cursor: pointer; }
-        .card:focus, .card:hover { border-color: var(--primary); background: rgba(212, 175, 55, 0.1); transform: scale(1.02); outline: none; }
-        .img-container { width: 65px; height: 65px; min-width: 65px; border-radius: 15px; overflow: hidden; border: 1px solid var(--glass-border); background: #fff; display: flex; align-items: center; justify-content: center; }
+
+        .card {
+            background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius); padding: 12px; display: flex; flex-direction: row-reverse;
+            align-items: center; text-decoration: none; transition: var(--transition);
+        }
+        .card:focus, .card:hover { 
+            border-color: var(--primary); background: rgba(212, 175, 55, 0.1); 
+            transform: translateY(-3px); outline: none;
+        }
+
+        .img-container {
+            width: 65px; height: 65px; min-width: 65px; border-radius: 15px; 
+            overflow: hidden; border: 1px solid var(--glass-border); background: #fff;
+        }
         .card-img { width: 100%; height: 100%; object-fit: contain; }
         .card-info { flex-grow: 1; padding: 0 15px; text-align: right; }
-        .card-title { color: var(--text-main); font-size: 1rem; font-weight: 800; display: block; }
-        .card-subtitle { color: #b0c4bc; font-size: 0.75rem; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .modal-card { background: #01241a; border: 2px solid var(--primary); border-radius: 30px; max-width: 350px; width: 100%; padding: 30px; text-align: center; }
-        .modal-btn { background: var(--primary); color: #000; padding: 14px; border-radius: 15px; margin-top: 20px; font-weight: 900; border: none; width: 100%; cursor: pointer; }
+        .card-title { color: var(--text-main); font-size: 1rem; font-weight: 800; }
+        .card-subtitle { color: #b0c4bc; font-size: 0.7rem; }
+
+        /* نافذة التنشيط الربحية */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95); z-index: 10000; display: flex;
+            align-items: center; justify-content: center; padding: 20px;
+        }
+        .modal-card {
+            background: #01241a; border: 2px solid var(--primary);
+            border-radius: 30px; max-width: 350px; width: 100%; padding: 30px; text-align: center;
+        }
+        .modal-btn {
+            background: var(--primary); color: #000; padding: 15px; border-radius: 15px;
+            margin-top: 20px; font-weight: 900; border: none; width: 100%; cursor: pointer; font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
+
+    <!-- نافذة الربح الإجبارية عند الدخول -->
     <div id="profitModal" class="modal-overlay">
         <div class="modal-card animate__animated animate__zoomIn">
-            <i class="fa-solid fa-unlock-keyhole" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
-            <h2 style="color: var(--primary);">تنشيط السيرفر الرئيسي</h2>
-            <p style="color: #ccc; font-size: 0.9rem;">اضغط للتنشيط والدخول للباقات العامة (يفتح في نافذة جديدة).</p>
-            <button onclick="handleActivation()" class="modal-btn" id="startBtn">تنشيط الآن</button>
+            <i class="fa-solid fa-shield-halved" style="font-size: 3.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h2 style="color: var(--primary); margin-bottom: 10px;">نظام التنشيط اليومي</h2>
+            <p style="color: #ccc; font-size: 0.9rem; line-height: 1.5;">يرجى تنشيط السيرفر الرئيسي لفتح كافة الباقات المشفرة لليوم. (سيفتح رابط التنشيط في نافذة جديدة)</p>
+            <button onclick="handleMainActivation()" class="modal-btn" id="activeBtn">تنشيط السيرفر الآن</button>
         </div>
     </div>
-    <header class="app-header"><div class="brand-logo">BALLON<span>TV</span></div></header>
-    <div class="grid" id="main-grid"></div>
+
+    <header class="app-header">
+        <div class="brand-logo">BALLON<span>TV</span></div>
+        <div style="background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 10px; font-size: 0.8rem; font-weight: 800;">إصدار V7</div>
+    </header>
+
+    <!-- بانر تحميل المشغل (رابط ربح مدمج) -->
+    <a href="javascript:void(0)" onclick="handleDownload()" class="download-banner">
+        <div class="download-info">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <div>
+                <div>تحميل مشغل BALLON PLAYER</div>
+                <div style="font-size: 0.6rem; opacity: 0.8;">ضروري جداً لتشغيل كافة القنوات</div>
+            </div>
+        </div>
+        <div class="btn-dl">تثبيت الآن</div>
+    </a>
+
+    <div class="section-title">الأقسام المميزة</div>
+
+    <div class="grid" id="main-grid">
+        <!-- قسم كأس العالم (رابط داخلي) -->
+        <a href="javascript:void(0)" onclick="goToPage('worldcup.html')" class="card animate__animated animate__fadeInUp" tabindex="0">
+            <div class="img-container"><img src="https://l.top4top.io/p_3805kmnv00.jpg" class="card-img"></div>
+            <div class="card-info">
+                <span class="card-title">قسم كأس العالم 2026</span>
+                <span class="card-subtitle">تغطية خاصة وجودة 4K</span>
+            </div>
+            <i class="fa-solid fa-crown" style="color: var(--primary);"></i>
+        </a>
+    </div>
+
     <script>
-        const profitLinks = ["https://omg10.com/4/10270118", "https://omg10.com/4/10185036", "https://omg10.com/4/9093521", "https://omg10.com/4/9047517", "https://omg10.com/4/10241472"];
-        function handleActivation() { window.open(profitLinks[Math.floor(Math.random() * profitLinks.length)], '_blank'); document.getElementById('profitModal').style.display = 'none'; }
-        
-        const content = [
-            { id: "worldcup.html", name: "قسم كأس العالم PRO", sub: "تغطية شاملة 4K", img: "https://l.top4top.io/p_3805kmnv00.jpg", isPage: true },
-            { id: "3", name: "BEIN SPORT", sub: "مجموعة بين سبورت كاملة", img: "https://g.top4top.io/p_3784r8k2z2.png" },
+        // الروابط الخاصة بك
+        const profitLinks = [
+            "https://omg10.com/4/10270118",
+            "https://omg10.com/4/10185036",
+            "https://omg10.com/4/9093521",
+            "https://omg10.com/4/9047517",
+            "https://omg10.com/4/10241472"
+        ];
+
+        const mediafireLink = "https://www.mediafire.com/file/7754umghlhk95sx/BALLONPLAYER-V7.apk/file";
+
+        // وظيفة لفتح رابط ربح عشوائي
+        function openRandomAd() {
+            const link = profitLinks[Math.floor(Math.random() * profitLinks.length)];
+            window.open(link, '_blank');
+        }
+
+        // تنشيط الدخول الرئيسي
+        function handleMainActivation() {
+            openRandomAd();
+            document.getElementById('profitModal').style.display = 'none';
+        }
+
+        // التعامل مع تحميل المشغل (ربح + تحميل)
+        function handleDownload() {
+            openRandomAd(); // فتح إعلان أولاً
+            setTimeout(() => {
+                window.location.href = mediafireLink; // ثم التوجه للتحميل
+            }, 1000);
+        }
+
+        // الانتقال لصفحة أخرى (ربح + انتقال)
+        function goToPage(page) {
+            openRandomAd(); // فتح إعلان عند الانتقال
+            setTimeout(() => {
+                window.location.href = page;
+            }, 500);
+        }
+
+        // بناء بقية القنوات العامة
+        const otherChannels = [
+            { id: "3", name: "BEIN SPORT", sub: "باقة بين سبورت كاملة", img: "https://g.top4top.io/p_3784r8k2z2.png" },
             { id: "16", name: "SHAHID", sub: "محتوى شاهد VIP حصرياً", img: "https://a.top4top.io/p_3792sb27n0.jpg" },
-            { id: "5", name: "MBC SPORT", sub: "الدوري السعودي", img: "https://c.top4top.io/p_36445ddtq1.jpg" }
+            { id: "5", name: "MBC SPORT", sub: "الدوري السعودي والبطولات", img: "https://c.top4top.io/p_36445ddtq1.jpg" },
+            { id: "12", name: "STC SPORT", sub: "قنوات SSC الرياضية", img: "https://b.top4top.io/p_37901pxgm0.png" }
         ];
 
         const grid = document.getElementById('main-grid');
-        content.forEach(item => {
+        otherChannels.forEach((ch, index) => {
             const a = document.createElement('a');
-            a.className = 'card'; a.setAttribute('tabindex', '0');
-            a.onclick = () => { if(item.isPage) window.location.href = item.id; else window.location.href = `go:${item.id}`; };
-            a.innerHTML = `<div class="img-container"><img src="${item.img}" class="card-img"></div><div class="card-info"><span class="card-title">${item.name}</span><span class="card-subtitle">${item.sub}</span></div><i class="fa-solid fa-chevron-left" style="color:var(--primary)"></i>`;
+            a.href = "javascript:void(0)";
+            a.className = 'card animate__animated animate__fadeInUp';
+            a.style.animationDelay = `${(index+1) * 0.05}s`;
+            a.setAttribute('tabindex', '0');
+            a.onclick = () => {
+                openRandomAd(); // ربح عند الضغط على أي قناة
+                setTimeout(() => { window.location.href = `go:${ch.id}`; }, 500);
+            };
+            a.innerHTML = `
+                <div class="img-container"><img src="${ch.img}" class="card-img"></div>
+                <div class="card-info">
+                    <span class="card-title">${ch.name}</span>
+                    <span class="card-subtitle">${ch.sub}</span>
+                </div>
+                <i class="fa-solid fa-play" style="color:var(--primary); font-size: 0.8rem;"></i>
+            `;
             grid.appendChild(a);
         });
 
+        // نظام الريموت كنترول
         document.addEventListener('keydown', (e) => {
-            const elements = Array.from(document.querySelectorAll('.card, button')).filter(el => el.offsetParent !== null);
+            const elements = Array.from(document.querySelectorAll('[tabindex="0"], button, .download-banner'));
             let index = elements.indexOf(document.activeElement);
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { index = (index + 1) % elements.length; elements[index].focus(); }
-            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { index = (index - 1 + elements.length) % elements.length; elements[index].focus(); }
-            else if (e.key === 'Enter') document.activeElement.click();
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                index = (index + 1) % elements.length; elements[index].focus(); e.preventDefault();
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                index = (index - 1 + elements.length) % elements.length; elements[index].focus(); e.preventDefault();
+            } else if (e.key === 'Enter') {
+                document.activeElement.click();
+            }
         });
-        window.onload = () => document.getElementById('startBtn').focus();
+
+        window.onload = () => { document.getElementById('activeBtn').focus(); };
     </script>
 </body>
 </html>
