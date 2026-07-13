@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>WORLD CUP 2026 PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root { --primary: #d4af37; --bg-dark: #01241a; --surface: rgba(255, 255, 255, 0.05); --glass-border: rgba(212, 175, 55, 0.2); --radius: 18px; }
+        ::-webkit-scrollbar { width: 0px; }
+        body { background-color: var(--bg-dark); background-image: radial-gradient(circle at 100% 100%, rgba(212, 175, 55, 0.1), transparent 40%); color: #fff; font-family: 'Tajawal', sans-serif; margin: 0; padding: 0; user-select: none; }
+        .app-header { position: sticky; top: 0; z-index: 1000; background: rgba(1, 36, 26, 0.9); backdrop-filter: blur(15px); padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); }
+        .brand-logo { font-weight: 900; font-size: 1.2rem; color: #fff; }
+        .brand-logo span { color: var(--primary); }
+        .cards-grid { display: grid; gap: 12px; padding: 15px; max-width: 1200px; margin: 0 auto; }
+        @media (min-width: 768px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+        .channel-card { background: var(--surface); border: 1px solid rgba(212, 175, 55, 0.1); border-radius: var(--radius); padding: 10px; display: flex; flex-direction: row-reverse; align-items: center; text-decoration: none; transition: 0.2s; }
+        .channel-card:focus, .channel-card:hover { background: var(--primary); transform: scale(1.03); outline: none; }
+        .channel-card:focus .card-title, .channel-card:hover .card-title { color: #000; }
+        .img-container { width: 60px; height: 60px; min-width: 60px; background: #fff; border-radius: 12px; padding: 4px; display: flex; align-items: center; justify-content: center; }
+        .card-img { width: 100%; height: 100%; object-fit: contain; }
+        .card-info { flex-grow: 1; padding: 0 15px; text-align: right; }
+        .card-title { color: #fff; font-size: 0.95rem; font-weight: 800; }
+        .card-status { display: block; color: var(--primary); font-size: 0.65rem; font-weight: 700; }
+        .channel-card:focus .card-status { color: #222; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 10005; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .modal-card { background: #01241a; border: 2px solid var(--primary); border-radius: 30px; max-width: 350px; width: 100%; padding: 30px; text-align: center; }
+        .modal-btn { background: var(--primary); color: #000; padding: 14px; border-radius: 15px; margin-top: 20px; font-weight: 900; border: none; width: 100%; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="profitModal" class="modal-overlay">
+        <div class="modal-card animate__animated animate__zoomIn">
+            <i class="fa-solid fa-crown" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h2 style="color: var(--primary);">تنشيط قسم PRO</h2>
+            <p style="color: #ccc; font-size: 0.85rem;">يجب تنشيط السيرفر الخاص بكأس العالم لليوم (يفتح في نافذة جديدة).</p>
+            <button onclick="handleActivation()" class="modal-btn" id="activeBtn">تنشيط PRO الآن</button>
+        </div>
+    </div>
+    <header class="app-header"><div class="brand-logo">WORLD CUP <span>2026 PRO</span></div><a href="index.html" style="color:var(--primary); text-decoration:none; font-size:0.8rem;"><i class="fa-solid fa-house"></i> الرئيسية</a></header>
+    <div class="cards-grid" id="main-grid"></div>
+    <script>
+        const profitLinks = ["https://omg10.com/4/10270118", "https://omg10.com/4/10185036", "https://omg10.com/4/9093521", "https://omg10.com/4/9047517", "https://omg10.com/4/10241472"];
+        function handleActivation() { window.open(profitLinks[Math.floor(Math.random() * profitLinks.length)], '_blank'); document.getElementById('profitModal').style.display = 'none'; }
+        
+        const channels = [
+            { id: "400", name: "beIN MAX 1", sub: "LIVE - 4K QUALITY", img: "https://l.top4top.io/p_3805kmnv00.jpg" },
+            { id: "401", name: "beIN MAX 2", sub: "LIVE - 4K QUALITY", img: "https://l.top4top.io/p_3805kmnv00.jpg" },
+            { id: "406", name: "World Cup français", sub: "WORLD CUP CHANNEL", img: "https://l.top4top.io/p_3805kmnv00.jpg" }
+        ];
+
+        const grid = document.getElementById('main-grid');
+        channels.forEach(ch => {
+            const div = document.createElement('div');
+            div.className = 'channel-card'; div.setAttribute('tabindex', '0');
+            div.onclick = () => { window.location.href = `intent://open?id=${ch.id}&title=${encodeURIComponent(ch.name)}#Intent;scheme=ballon;package=com.ballon.player;end`; };
+            div.innerHTML = `<div class="img-container"><img src="${ch.img}" class="card-img"></div><div class="card-info"><span class="card-title">${ch.name}</span><span class="card-status">QUALITY 4K</span></div><i class="fa-solid fa-play" style="color:var(--primary)"></i>`;
+            grid.appendChild(div);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const elements = Array.from(document.querySelectorAll('.channel-card, button, a')).filter(el => el.offsetParent !== null);
+            let index = elements.indexOf(document.activeElement);
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { index = (index + 1) % elements.length; elements[index].focus(); }
+            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { index = (index - 1 + elements.length) % elements.length; elements[index].focus(); }
+            else if (e.key === 'Enter') document.activeElement.click();
+        });
+        window.onload = () => document.getElementById('activeBtn').focus();
+    </script>
+</body>
+</html>
