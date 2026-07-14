@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>BALLON TV | جدول المباريات الملكي</title>
+    <title>BALLON TV | جدول المباريات</title>
 
-    <!-- الخطوط والأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <style>
         :root {
-            --primary: #d4af37; /* ذهبي */
-            --bg-dark: #01241a; /* أخضر زمردي */
+            --primary: #d4af37;
+            --bg-dark: #01241a;
             --surface: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(212, 175, 55, 0.3);
             --radius: 20px;
-            --transition: all 0.25s ease-out;
         }
 
         ::-webkit-scrollbar { width: 0px; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-
         body {
             background-color: var(--bg-dark);
             background-image: radial-gradient(circle at 0% 0%, rgba(212, 175, 55, 0.15) 0%, transparent 40%);
@@ -30,10 +26,8 @@
             color: #ffffff;
             font-family: 'Tajawal', sans-serif;
             margin: 0; padding: 0; overflow-x: hidden;
-            user-select: none;
         }
 
-        /* هيدر */
         .app-header {
             position: sticky; top: 0; z-index: 1000;
             background: rgba(1, 36, 26, 0.9); backdrop-filter: blur(15px);
@@ -43,193 +37,118 @@
         .brand-logo { font-weight: 900; font-size: 1.4rem; color: white; font-style: italic; }
         .brand-logo span { color: var(--primary); }
 
-        /* بانر التحميل */
-        .download-banner {
-            background: linear-gradient(135deg, #d4af37, #aa8a2e);
-            margin: 15px; padding: 18px; border-radius: var(--radius);
-            display: flex; justify-content: space-between; align-items: center;
-            color: #000; text-decoration: none; font-weight: 900;
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-            animation: pulse 2s infinite;
-        }
-
-        /* نظام التبويبات (أمس، اليوم، الغد) */
-        .tabs-container {
-            display: flex; gap: 10px; padding: 10px 15px;
-            overflow-x: auto; scrollbar-width: none;
-        }
+        /* التبويبات */
+        .tabs-container { display: flex; gap: 8px; padding: 10px 15px; overflow-x: auto; }
         .tab-btn {
             background: var(--surface); border: 1px solid var(--glass-border);
-            color: #fff; padding: 10px 20px; border-radius: 12px;
-            font-weight: 800; cursor: pointer; flex: 1; text-align: center;
-            white-space: nowrap; transition: var(--transition);
+            color: #fff; padding: 10px 15px; border-radius: 12px;
+            font-weight: 800; cursor: pointer; flex: 1; text-align: center; font-size: 0.8rem;
         }
         .tab-btn.active { background: var(--primary); color: #000; }
-        .tab-btn:focus { outline: 2px solid #fff; transform: scale(1.05); }
 
-        /* حاوية الجداول */
-        .match-section { display: none; padding: 10px 15px; min-height: 300px; }
-        .match-section.active { display: block; animation: fadeIn 0.5s; }
+        /* حاوية الجدول */
+        .match-section { display: none; padding: 10px 15px; }
+        .match-section.active { display: block; }
+        .anub-card { background: rgba(255,255,255,0.03); border-radius: var(--radius); padding: 10px; border: 1px solid var(--glass-border); min-height: 200px; }
 
-        .anub-card {
-            background: rgba(255,255,255,0.03); border-radius: var(--radius);
-            padding: 15px; border: 1px solid var(--glass-border);
-        }
-
-        /* نافذة التنشيط */
+        /* التنشيط */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.96); z-index: 10005; 
+            background: rgba(0, 0, 0, 0.98); z-index: 10005; 
             display: flex; align-items: center; justify-content: center; padding: 20px;
         }
         .modal-card {
             background: #01241a; border: 2px solid var(--primary);
             border-radius: 30px; max-width: 350px; width: 100%; padding: 30px; text-align: center;
         }
-        .modal-btn {
-            background: var(--primary); color: #000; padding: 15px; border-radius: 15px;
-            margin-top: 20px; font-weight: 900; border: none; width: 100%; cursor: pointer;
-        }
+        .modal-btn { background: var(--primary); color: #000; padding: 15px; border-radius: 15px; font-weight: 900; border: none; width: 100%; cursor: pointer; }
 
-        /* القائمة السفلية للأقسام */
-        .grid { display: grid; gap: 12px; padding: 15px 15px 100px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        .card {
-            background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 15px; padding: 12px; display: flex; flex-direction: row-reverse;
-            align-items: center; text-decoration: none;
+        .download-banner {
+            background: linear-gradient(135deg, #d4af37, #aa8a2e);
+            margin: 15px; padding: 15px; border-radius: var(--radius);
+            display: flex; justify-content: space-between; align-items: center;
+            color: #000; text-decoration: none; font-weight: 900;
         }
     </style>
 </head>
 <body>
 
-    <!-- نافذة الربح الإجبارية -->
     <div id="activationModal" class="modal-overlay">
-        <div class="modal-card animate__animated animate__zoomIn">
-            <i class="fa-solid fa-calendar-check" style="font-size: 3.5rem; color: var(--primary); margin-bottom: 15px;"></i>
-            <h2 style="color: var(--primary);">تنشيط جدول المباريات</h2>
-            <p style="color: #ccc; font-size: 0.85rem;">يجب تنشيط السيرفر لمرة واحدة يومياً لعرض أحدث نتائج المباريات والقنوات الناقلة.</p>
-            <button onclick="activateAndEntry()" class="modal-btn" id="activeBtn">تنشيط الآن</button>
+        <div class="modal-card">
+            <i class="fa-solid fa-bolt" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+            <h2 style="color: var(--primary);">تنشيط السيرفر</h2>
+            <p style="color: #ccc; font-size: 0.85rem;">اضغط لتنشيط جدول المباريات والبث المباشر لليوم.</p>
+            <button onclick="activateNow()" class="modal-btn" id="activeBtn">تنشيط الآن</button>
         </div>
     </div>
 
     <header class="app-header">
         <div class="brand-logo">BALLON<span>TV</span></div>
-        <div style="font-size: 0.7rem; color: var(--primary); font-weight: 800;"><i class="fa-solid fa-circle-dot animate__animated animate__flash animate__infinite"></i> مباشر</div>
     </header>
 
-    <!-- تحميل المشغل (ربح) -->
-    <a href="javascript:void(0)" onclick="handleProfitClick('https://www.mediafire.com/file/7754umghlhk95sx/BALLONPLAYER-V7.apk/file')" class="download-banner">
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <i class="fa-solid fa-download" style="font-size: 1.5rem;"></i>
-            <div>
-                <div style="font-size: 0.85rem;">تحميل BALLON PLAYER V7</div>
-                <div style="font-size: 0.6rem; opacity: 0.8;">تحديث 2027 المستقر</div>
-            </div>
-        </div>
-        <div style="background: #000; color: #fff; padding: 5px 12px; border-radius: 8px; font-size: 0.7rem;">تثبيت</div>
+    <a href="javascript:void(0)" onclick="handleAd('https://www.mediafire.com/file/7754umghlhk95sx/BALLONPLAYER-V7.apk/file')" class="download-banner">
+        <span style="font-size: 0.85rem;"><i class="fa-solid fa-download"></i> تحميل المشغل V7</span>
+        <span style="background:#000; color:#fff; padding:4px 10px; border-radius:8px; font-size:0.7rem;">تحميل</span>
     </a>
 
-    <!-- تبويبات الأيام -->
     <div class="tabs-container">
-        <div class="tab-btn" onclick="showDay('yesterday', this)" tabindex="0">مباريات الأمس</div>
-        <div class="tab-btn active" onclick="showDay('today', this)" tabindex="0">مباريات اليوم</div>
-        <div class="tab-btn" onclick="showDay('tomorrow', this)" tabindex="0">مباريات الغد</div>
+        <div class="tab-btn" onclick="showDay('yesterday', this)">الأمس</div>
+        <div class="tab-btn active" onclick="showDay('today', this)">اليوم</div>
+        <div class="tab-btn" onclick="showDay('tomorrow', this)">الغد</div>
     </div>
 
     <!-- جداول المباريات -->
+    <!-- ملاحظة: يجب أن تكون مرئية لحظة تشغيل السكريبت لتعمل بشكل صحيح -->
     <div id="yesterday" class="match-section">
         <div class="anub-card">
-            <AnubMatch day='yesterday' auto='true' url="" num='1' style="display:block;text-align: center;">
-                <img src="https://dev.anubis-web.com/media/loading.svg" width="50px" height="50px">
-            </AnubMatch>
+            <AnubMatch day='yesterday' auto='true' url="" num='1'></AnubMatch>
         </div>
     </div>
 
     <div id="today" class="match-section active">
         <div class="anub-card">
-            <AnubMatch day='today' auto='true' url="" num='1' style="display:block;text-align: center;">
-                <img src="https://dev.anubis-web.com/media/loading.svg" width="50px" height="50px">
-            </AnubMatch>
+            <AnubMatch day='today' auto='true' url="" num='1'></AnubMatch>
         </div>
     </div>
 
     <div id="tomorrow" class="match-section">
         <div class="anub-card">
-            <AnubMatch day='tomorrow' auto='true' url="" num='1' style="display:block;text-align: center;">
-                <img src="https://dev.anubis-web.com/media/loading.svg" width="50px" height="50px">
-            </AnubMatch>
+            <AnubMatch day='tomorrow' auto='true' url="" num='1'></AnubMatch>
         </div>
     </div>
 
-    <div class="section-label" style="margin: 20px 15px 10px; font-weight: 900; color: var(--primary);">الباقات المتاحة</div>
-
-    <div class="grid">
-        <a href="javascript:void(0)" onclick="handleProfitClick('worldcup.html')" class="card" tabindex="0">
-            <div style="flex-grow: 1; padding: 0 15px; text-align: right;">
-                <span style="font-weight: 800; display: block; font-size: 0.9rem;">قسم كأس العالم PRO</span>
-                <span style="font-size: 0.7rem; color: #b0c4bc;">تغطية شاملة وجودة 4K</span>
-            </div>
-            <img src="https://l.top4top.io/p_3805kmnv00.jpg" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">
-        </a>
+    <div style="padding: 20px; text-align: center;">
+        <button onclick="handleAd('worldcup.html')" class="modal-btn" style="width: auto; padding: 10px 30px;">
+            <i class="fa-solid fa-trophy"></i> قسم كأس العالم PRO
+        </button>
     </div>
 
-    <!-- استدعاء سكريبت الجداول (مرة واحدة يكفي) -->
+    <!-- استدعاء السكريبت في النهاية تماماً -->
     <script src="https://dev.anubis-web.com/TableMatchAuto/TMA.js"></script>
 
     <script>
-        // روابط الربح الخاصة بك
-        const moneyLinks = [
-            "https://omg10.com/4/10270118", "https://omg10.com/4/10185036",
-            "https://omg10.com/4/9093521", "https://omg10.com/4/9047517", "https://omg10.com/4/10241472"
-        ];
-
+        const links = ["https://omg10.com/4/10270118", "https://omg10.com/4/10185036", "https://omg10.com/4/9093521", "https://omg10.com/4/9047517", "https://omg10.com/4/10241472"];
+        
         function openAd() {
-            const link = moneyLinks[Math.floor(Math.random() * moneyLinks.length)];
-            window.open(link, '_blank');
+            window.open(links[Math.floor(Math.random() * links.length)], '_blank');
         }
 
-        // تنشيط الدخول
-        function activateAndEntry() {
+        function activateNow() {
             openAd();
             document.getElementById('activationModal').style.display = 'none';
         }
 
-        // التعامل مع الضغطات (ربح + انتقال)
-        function handleProfitClick(targetUrl) {
+        function handleAd(url) {
             openAd();
-            setTimeout(() => {
-                if(targetUrl.includes('go:')) window.location.href = targetUrl;
-                else window.location.href = targetUrl;
-            }, 800);
+            setTimeout(() => { window.location.href = url; }, 800);
         }
 
-        // نظام تبديل الأيام
         function showDay(dayId, btn) {
-            // إخفاء الكل
-            document.querySelectorAll('.match-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.match-section').forEach(s => s.style.display = 'none');
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            
-            // إظهار المختار
-            document.getElementById(dayId).classList.add('active');
+            document.getElementById(dayId).style.display = 'block';
             btn.classList.add('active');
-
-            // اختياري: فتح إعلان عند التبديل لزيادة الربح
-            // openAd(); 
         }
-
-        // دعم الريموت كنترول
-        document.addEventListener('keydown', (e) => {
-            const focusable = Array.from(document.querySelectorAll('[tabindex="0"], button, .card, .tab-btn'));
-            let index = focusable.indexOf(document.activeElement);
-            if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                index = (index + 1) % focusable.length; focusable[index].focus(); e.preventDefault();
-            } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                index = (index - 1 + focusable.length) % focusable.length; focusable[index].focus(); e.preventDefault();
-            } else if (e.key === 'Enter') {
-                document.activeElement.click();
-            }
-        });
 
         window.onload = () => { document.getElementById('activeBtn').focus(); };
     </script>
